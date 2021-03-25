@@ -9,7 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicalHistory">
-        <activity android:name=".PageActivity"></activity>
+        <activity android:name=".NewEntry"></activity>
+        <activity android:name=".fullHistory" />
+        <activity
+            android:name=".FullHistoryActivity"
+            android:label="@string/title_activity_full_history"
+            android:theme="@style/Theme.MedicalHistory.NoActionBar" />
+        <activity android:name=".PatientActivity" />
+        <activity android:name=".PageActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
