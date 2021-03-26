@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Page> pages;
 
     //container for the patients
+    //when we create a patient we should store it in an array in the app storage
     ViewGroup patientsContainer;
 
     //variables to create the dialog to create a new patient
