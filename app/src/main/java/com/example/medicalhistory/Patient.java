@@ -52,8 +52,9 @@ public class Patient {
 //    }
 
     public Patient(EditText patientPopup_firstName, EditText patientPopup_lastName, EditText patientPopup_condition) {
-        this.firstName = String.valueOf(patientPopup_firstName);
-        this.lastName = String.valueOf(patientPopup_lastName);
-        this.condition = String.valueOf(patientPopup_condition);
+
+        this.firstName = patientPopup_firstName.getText().toString();
+        this.lastName = patientPopup_lastName.getText().toString();
+        this.condition = patientPopup_condition.getText().toString();
     }
 }

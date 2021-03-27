@@ -9,19 +9,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    //Jack was here
-    //No he wasn't
-
 
     private String TAG = "MainActivity";
-    private List<Page> pages;
+    public List<Page> pages;
 
     //container for the patients
     //when we create a patient we should store it in an array in the app storage
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText patientPopup_firstName, patientPopup_lastName, patientPopup_birthday, patientPopup_condition;
     private Button patientPopup_cancel, patientPopup_save;
 
-    private Patient newPatient;
+    private List<Patient> patients = new ArrayList<Patient>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,12 @@ public class MainActivity extends AppCompatActivity {
         patientsContainer = findViewById(R.id.patientsContainer);
     }
 
-    public void importPages(){}
+    public Thread importPages(){
+        FileImport r = new FileImport("",getFilesDir().toString());
+        Thread thread = new Thread(r , "File Import Thread");
+        thread.start();
+        return thread;
+    }
     public void exportPages(){}
 
     public void deletePage(View view){}
@@ -105,7 +111,9 @@ public class MainActivity extends AppCompatActivity {
         patientPopup_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newPatient = new Patient(patientPopup_firstName, patientPopup_lastName, patientPopup_condition);
+                Log.i(TAG, "Adding new Patient with name " + patientPopup_firstName.getText().toString());
+                Patient newPatient = new Patient(patientPopup_firstName, patientPopup_lastName, patientPopup_condition);
+                patients.add(newPatient);
                 addPatient();
 //                TextView patient;
 //                patient = new TextView(v);
@@ -118,9 +126,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addPatient() {
-        TextView patient = new TextView(this);
-        patient.setText(newPatient.getFirstName());
-        patientsContainer.addView(patient);
+        //define the list of names we are working with
+        Log.i(TAG, "adding new patient to list");
+        String[] names = new String[patients.size()];
+        for(int i = 0; i < patients.size(); i++){
+            names[i] = patients.get(i).getFirstName();
+        }
+
+        //convert the list of names into the listView
+        ArrayAdapter<String> patientAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
+
+        ListView listView = (ListView) findViewById(R.id.PatientListView);
+        listView.setAdapter(patientAdapter);
     }
 
 
