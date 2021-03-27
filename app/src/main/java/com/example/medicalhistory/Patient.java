@@ -57,4 +57,10 @@ public class Patient {
         this.lastName = patientPopup_lastName.getText().toString();
         this.condition = patientPopup_condition.getText().toString();
     }
+
+    public Patient(String firstName, String lastName, String condition){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.condition = condition;
+    }
 }
