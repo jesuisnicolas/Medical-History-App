@@ -1,11 +1,23 @@
 package com.example.medicalhistory;
 
 import android.app.Activity;
+import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
+
+import com.google.gson.Gson;
+
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Reader;
 import java.lang.ref.WeakReference;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 public class FileImport implements Runnable {
     private Page page;
@@ -16,8 +28,10 @@ public class FileImport implements Runnable {
     private String workingDirectroy;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void run() {
+        //depreciated function no longer necisary
         Log.i(TAG, "Thread Created");
 
         File f = new File(String.valueOf(workingDirectroy));
@@ -39,7 +53,19 @@ public class FileImport implements Runnable {
     public FileImport() {
 
     }
-    public void importFile(){}
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void importFile(){
+        Gson gson = new Gson();
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(fileReffrance));
+            Page newPage = gson.fromJson(reader, Page.class);
+            page = newPage;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
     public Page getPage(){return page;}
     public void setFileReffrance(String reffrance){fileReffrance = reffrance;}
 }
