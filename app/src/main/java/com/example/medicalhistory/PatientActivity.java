@@ -2,10 +2,12 @@ package com.example.medicalhistory;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.File;
 import java.util.Arrays;
@@ -30,6 +32,10 @@ condition name should be stored.
         setContentView(R.layout.activity_patient);
 
         //TODO: set working directy from activity intention message
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        TextView textView = findViewById(R.id.patientNameH1);
+        textView.setText(message);
     }
 
 

@@ -1,21 +1,23 @@
 package com.example.medicalhistory;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import java.io.File;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
     public List<Page> pages;
 
+    public static final String EXTRA_MESSAGE = "com.example.medicalhistory.MESSAGE";
     //container for the patients
     //when we create a patient we should store it in an array in the app storage
     ViewGroup patientsContainer;
@@ -35,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private Button patientPopup_cancel, patientPopup_save;
 
     private List<Patient> patients = new ArrayList<Patient>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "adding new patient to list");
         String[] names = new String[patients.size()];
         for(int i = 0; i < patients.size(); i++){
-            names[i] = patients.get(i).getFirstName();
+            names[i] = patients.get(i).getFirstName() + patients.get(i).getLastName();
         }
 
         //convert the list of names into the listView
@@ -138,7 +143,31 @@ public class MainActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.PatientListView);
         listView.setAdapter(patientAdapter);
+
+        //this stores the patient array in SharedPreferences
+//        SharedPreferences sharedPreferences = getSharedPreferences("PATIENTS", MODE_PRIVATE);
+//        Gson gson = new Gson();
+//        String json = gson.toJson(names);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString("Patients", json );
+//        editor.commit();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+//                String EXTRA_MESSAGE = "com.example.medicalhistory.MESSAGE";
+                Intent intent = new Intent(MainActivity.this, PatientActivity.class);
+                String message = parent.getAdapter().getItem(position).toString();
+                intent.putExtra(EXTRA_MESSAGE, message);
+                startActivity(intent);
+            }
+        });
     }
+
+
+
+
 
 
 
