@@ -11,9 +11,9 @@
         android:id="@+id/patientNameH1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
-        android:textSize="24sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,20 +22,18 @@
         android:id="@+id/latestEntries"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="91dp"
         android:text="@string/latest_entries"
-        app:layout_constraintBottom_toTopOf="@+id/fileList"
         app:layout_constraintStart_toStartOf="@+id/fileList"
-        app:layout_constraintTop_toBottomOf="@+id/patientNameH1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/exportBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fileList"
         app:srcCompat="@android:drawable/ic_menu_add" />
@@ -44,7 +42,7 @@
         android:id="@+id/exportBtn"
         android:layout_width="310dp"
         android:layout_height="43dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="@string/export_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,29 +59,31 @@
         android:id="@+id/editPatientInfoBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="@string/edit_personal_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="565dp" />
+        app:layout_constraintTop_toBottomOf="@+id/exportBtn" />
 
     <Button
         android:id="@+id/editDoctorsInfoBtn"
         android:layout_width="192dp"
         android:layout_height="48dp"
         android:text="@string/edit_doctors_info"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPatientInfoBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/editPatientInfoBtn"
+        app:layout_constraintVertical_bias="0.084" />
 
     <ListView
         android:id="@+id/fileList"
-        android:layout_width="297dp"
-        android:layout_height="205dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+        android:layout_width="293dp"
+        android:layout_height="237dp"
+        android:layout_marginTop="122dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/latestEntries" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

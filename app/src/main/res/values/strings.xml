@@ -6,7 +6,7 @@
     <string name="condition">Condition</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="latest_entries">Latest Entries:</string>
+    <string name="latest_entries">Latest Files:</string>
     <string name="export_info">Export Information</string>
     <string name="edit_personal_info">Edit Personal Info</string>
     <string name="edit_doctors_info">Edit Doctors Info</string>

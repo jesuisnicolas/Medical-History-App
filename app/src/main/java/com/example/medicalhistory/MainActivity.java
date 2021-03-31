@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "adding new patient to list");
         String[] names = new String[patients.size()];
         for(int i = 0; i < patients.size(); i++){
-            names[i] = patients.get(i).getFirstName() + patients.get(i).getLastName();
+            names[i] = patients.get(i).getFirstName() + " " + patients.get(i).getLastName();
         }
 
         //convert the list of names into the listView
@@ -145,12 +145,12 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(patientAdapter);
 
         //this stores the patient array in SharedPreferences
-//        SharedPreferences sharedPreferences = getSharedPreferences("PATIENTS", MODE_PRIVATE);
-//        Gson gson = new Gson();
-//        String json = gson.toJson(names);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.putString("Patients", json );
-//        editor.commit();
+        SharedPreferences sharedPreferences = getSharedPreferences("PATIENTS", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = gson.toJson(names);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("Patients", json );
+        editor.commit();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
