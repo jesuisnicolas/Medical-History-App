@@ -17,9 +17,16 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.stream.JsonReader;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import static android.content.SharedPreferences.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
         loadData(this);
 
         patientsContainer = findViewById(R.id.patientsContainer);
+
+        //This will populate the list from the sharedpreferences file
+//        populatePatientsList(); //But it makes the app crash
+
     }
 
     public Thread importPages(){
@@ -65,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void saveData(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Editor editor = sharedPreferences.edit();
 
 //        editor.putString("UserName", "joe");
         editor.apply();
@@ -136,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
         String[] names = new String[patients.size()];
         for(int i = 0; i < patients.size(); i++){
             names[i] = patients.get(i).getFirstName() + " " + patients.get(i).getLastName();
+            String dirName = (patients.get(i).getFirstName() + patients.get(i).getLastName()).toLowerCase().toString();
+            getDir(dirName, MODE_PRIVATE);
         }
 
         //convert the list of names into the listView
@@ -148,9 +161,10 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("PATIENTS", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = gson.toJson(names);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Editor editor = sharedPreferences.edit();
         editor.putString("Patients", json );
         editor.commit();
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -163,12 +177,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
-
-
-
-
+//    public void populatePatientsList() {
+//        try {
+//            Gson gson = new Gson();
+//            SharedPreferences sh = getSharedPreferences("PATIENTS", MODE_PRIVATE);
+//            String names = gson.fromJson(String.valueOf(sh), String.class);
+//            ArrayAdapter<String> patientAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
+//            ListView listView = (ListView) findViewById(R.id.PatientListView);
+//            listView.setAdapter(patientAdapter);
+//        } finally {
+//            return;
+//        }
+//    }
 
 
 }

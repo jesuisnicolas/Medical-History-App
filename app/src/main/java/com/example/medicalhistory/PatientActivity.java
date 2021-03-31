@@ -36,6 +36,7 @@ condition name should be stored.
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         TextView textView = findViewById(R.id.patientNameH1);
         textView.setText(message);
+        workingDirectory = message.toLowerCase().replaceAll("\\s+",""); //This makes the directory with the name received
     }
 
 
