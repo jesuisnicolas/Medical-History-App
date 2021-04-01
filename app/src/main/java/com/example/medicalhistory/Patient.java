@@ -2,7 +2,9 @@ package com.example.medicalhistory;
 
 import android.widget.EditText;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Patient {
 
@@ -62,5 +64,22 @@ public class Patient {
         this.firstName = firstName;
         this.lastName = lastName;
         this.condition = condition;
+    }
+
+    public Patient(String name){
+        List<String> firstName = new ArrayList<String>();
+        List<String> lastName = new ArrayList<String>();
+
+        for(int i = 0; i < name.length(); i++){
+            boolean hitSpace = false;
+
+            if(!hitSpace && name.charAt(i) != ' '){
+                firstName.add(Character.toString(name.charAt(i)));
+            }else if(name.charAt(i) == ' '){
+                hitSpace = true;
+            }else{
+                lastName.add(Character.toString(name.charAt(i)));
+            }
+        }
     }
 }

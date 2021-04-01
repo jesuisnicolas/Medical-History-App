@@ -3,6 +3,7 @@ package com.example.medicalhistory;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.ListView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
@@ -83,10 +85,33 @@ public class MainActivity extends AppCompatActivity {
 //        Log.i("mainActivity", "Data saved");
     }
 
-    public static void loadData(Context context){
+    public void loadData(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
-//        UserName = sharedPreferences.getString("UserName", "");
-//        Log.i("mainActivity", "Data loaded: " + UserName);
+        String json = sharedPreferences.getString("Patients","");
+        Log.i(TAG, "loaded patients: " + json);
+        Gson gson = new Gson();
+        String[] names = gson.fromJson(json, String[].class);
+        for(int i = 0; i < names.length; i++){
+            patients.add(new Patient(names[i]));
+        }
+
+        //TODO: this should be a function but im lazy
+        ArrayAdapter<String> patientAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
+
+        ListView listView = (ListView) findViewById(R.id.PatientListView);
+        listView.setAdapter(patientAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+//                String EXTRA_MESSAGE = "com.example.medicalhistory.MESSAGE";
+                Intent intent = new Intent(MainActivity.this, PatientActivity.class);
+                String message = parent.getAdapter().getItem(position).toString();
+                intent.putExtra(EXTRA_MESSAGE, message);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -145,8 +170,10 @@ public class MainActivity extends AppCompatActivity {
         //define the list of names we are working with
         Log.i(TAG, "adding new patient to list");
         String[] names = new String[patients.size()];
+        Log.i(TAG,"list of patients is as follows: ");
         for(int i = 0; i < patients.size(); i++){
             names[i] = patients.get(i).getFirstName() + " " + patients.get(i).getLastName();
+            Log.i(TAG,names[i]);
             String dirName = (patients.get(i).getFirstName() + patients.get(i).getLastName()).toLowerCase().toString();
             getDir(dirName, MODE_PRIVATE);
         }
@@ -158,12 +185,15 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(patientAdapter);
 
         //this stores the patient array in SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("PATIENTS", MODE_PRIVATE);
+        //TODO: this should be moved to the 'saveData' function as this is its intended function.
+        // also this operation runs every time we add a user when it realy only needs to run when the app is closing
+        SharedPreferences sharedPreferences = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = gson.toJson(names);
         Editor editor = sharedPreferences.edit();
         editor.putString("Patients", json );
         editor.commit();
+        Log.i(TAG,"saved patients: " + json);
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
