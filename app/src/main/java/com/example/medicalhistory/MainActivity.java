@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
                     patients.add(new Patient(names[i]));
                 }
             }
-        } catch (Exception e) {
 
 
             //TODO: this should be a function but im lazy
@@ -117,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
