@@ -22,7 +22,7 @@
         android:id="@+id/newEntryCondition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="248dp"
+        android:layout_marginTop="180dp"
         android:ems="10"
         android:hint="@string/condition"
         android:inputType="textPersonName"
@@ -64,7 +64,7 @@
         android:text="@string/select_file"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newEntryInfo" />
+        app:layout_constraintTop_toBottomOf="@+id/newEntryFilePath" />
 
     <Button
         android:id="@+id/saveEntryBtn"
@@ -74,4 +74,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectFileBtn" />
+
+    <TextView
+        android:id="@+id/newEntryFilePath"
+        android:layout_width="204dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:gravity="bottom"
+        android:hint="File Path"
+        android:textAlignment="viewStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newEntryInfo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
