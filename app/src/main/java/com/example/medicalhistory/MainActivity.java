@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "loaded patients: " + json);
         Gson gson = new Gson();
         String[] names = gson.fromJson(json, String[].class);
-        if(names != null) {
+        if(names[0] != "") {
             for (int i = 0; i < names.length; i++) {
                 patients.add(new Patient(names[i]));
             }
