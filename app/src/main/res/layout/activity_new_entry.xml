@@ -7,61 +7,71 @@
     tools:context=".NewEntry">
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/newEntryDoctorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="@string/doctor"
         android:inputType="textPersonName"
-        android:text="@string/condition"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/newEntryDate"
+        app:layout_constraintStart_toStartOf="@+id/newEntryDate"
+        app:layout_constraintTop_toBottomOf="@+id/newEntryCondition" />
+
+    <EditText
+        android:id="@+id/newEntryCondition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="248dp"
+        android:ems="10"
+        android:hint="@string/condition"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/newEntryDoctorName"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/newEntryDoctorName"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/newEntryDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/doctor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        android:hint="@string/date"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="@+id/newEntryInfo"
+        app:layout_constraintStart_toStartOf="@+id/newEntryInfo"
+        app:layout_constraintTop_toBottomOf="@+id/newEntryDoctorName" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/newEntryInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="date"
-        android:text="@string/date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        android:gravity="start|top"
+        android:hint="@string/extra_info"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="@+id/selectFileBtn"
+        app:layout_constraintStart_toStartOf="@+id/selectFileBtn"
+        app:layout_constraintTop_toBottomOf="@+id/newEntryDate" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/selectFileBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/select_file"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+        app:layout_constraintTop_toBottomOf="@+id/newEntryInfo" />
 
-    <EditText
-        android:id="@+id/editTextTextMultiLine"
+    <Button
+        android:id="@+id/saveEntryBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
+        android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:hint="@string/extra_info"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintTop_toBottomOf="@+id/selectFileBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

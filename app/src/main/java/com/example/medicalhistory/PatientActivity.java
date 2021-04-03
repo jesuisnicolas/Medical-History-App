@@ -25,6 +25,7 @@ condition name should be stored.
 
     protected String workingDirectory;
     protected List<String> fileNames;
+    public static final String EXTRA_MESSAGE = "com.example.medicalhistory.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,14 @@ condition name should be stored.
 
         ListView listView = (ListView) findViewById(R.id.fileList);
         listView.setAdapter(adapter);
+    }
+
+    public void addNewEntry(View view){
+        Intent intent = new Intent(this, NewEntry.class);
+//        EditText editText = (EditText) findViewById(R.id.editText);
+//        String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, workingDirectory);
+        startActivity(intent);
     }
 
     //TODO: make on clickevent for list
