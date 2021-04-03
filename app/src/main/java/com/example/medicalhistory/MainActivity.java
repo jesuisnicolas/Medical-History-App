@@ -99,24 +99,25 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
 
-        }
-        //TODO: this should be a function but im lazy
-        ArrayAdapter<String> patientAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
 
-        ListView listView = (ListView) findViewById(R.id.PatientListView);
-        listView.setAdapter(patientAdapter);
+            //TODO: this should be a function but im lazy
+            ArrayAdapter<String> patientAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
+            ListView listView = (ListView) findViewById(R.id.PatientListView);
+            listView.setAdapter(patientAdapter);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position,
+                                        long id) {
 //                String EXTRA_MESSAGE = "com.example.medicalhistory.MESSAGE";
-                Intent intent = new Intent(MainActivity.this, PatientActivity.class);
-                String message = parent.getAdapter().getItem(position).toString();
-                intent.putExtra(EXTRA_MESSAGE, message);
-                startActivity(intent);
-            }
-        });
+                    Intent intent = new Intent(MainActivity.this, PatientActivity.class);
+                    String message = parent.getAdapter().getItem(position).toString();
+                    intent.putExtra(EXTRA_MESSAGE, message);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
 
