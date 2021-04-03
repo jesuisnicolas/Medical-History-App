@@ -91,10 +91,11 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "loaded patients: " + json);
         Gson gson = new Gson();
         String[] names = gson.fromJson(json, String[].class);
-        for(int i = 0; i < names.length; i++){
-            patients.add(new Patient(names[i]));
+        if(names != null) {
+            for (int i = 0; i < names.length; i++) {
+                patients.add(new Patient(names[i]));
+            }
         }
-
         //TODO: this should be a function but im lazy
         ArrayAdapter<String> patientAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
 
