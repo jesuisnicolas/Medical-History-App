@@ -46,9 +46,9 @@ public class FileImport implements Runnable {
 
     }
 
-    public FileImport(String pathname, String workingDirectory){
+    public FileImport(String pathname){
         page = new Page();
-        this.workingDirectroy = workingDirectory;
+        this.workingDirectroy = pathname;
     }
     public FileImport() {
 
