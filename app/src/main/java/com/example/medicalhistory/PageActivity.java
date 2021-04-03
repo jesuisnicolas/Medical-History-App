@@ -3,6 +3,7 @@ package com.example.medicalhistory;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,6 +34,24 @@ public class PageActivity extends AppCompatActivity {
 
         EditText body = findViewById(R.id.bodyText);
         body.setText(page.getBodyText());
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        save();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        save();
+    }
+
+    protected void save(){
+        Runnable runnable = new FileExport(page, pathName);
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
     public void export(){}

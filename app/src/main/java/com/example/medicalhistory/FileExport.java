@@ -35,6 +35,7 @@ public class FileExport implements Runnable{
             e.printStackTrace();
         }
     }
+    public FileExport(Page page, String fileReffrance){this.page = page; this.fileReffrance = fileReffrance;}
     public void setPage(Page page){this.page = page;}
     public void setFileReffrance(String reffrance){fileReffrance = reffrance;}
 }

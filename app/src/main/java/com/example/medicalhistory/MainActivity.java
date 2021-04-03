@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Thread importPages(){
-        FileImport r = new FileImport("",getFilesDir().toString());
+        FileImport r = new FileImport(getFilesDir().toString());
         Thread thread = new Thread(r , "File Import Thread");
         thread.start();
         return thread;
