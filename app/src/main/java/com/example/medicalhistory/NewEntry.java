@@ -105,7 +105,7 @@ public class NewEntry extends AppCompatActivity {
 //        FileExport fileExport = new FileExport(file, getFilesDir() + "/text.txt");
 //        fileExport.exportPage();
 
-        Runnable runnable = new FileExport(file, getFilesDir() + "/text.txt"); //"app_"+patientWorkingDir+"/"+condition);
+        Runnable runnable = new FileExport(file, getFilesDir() + patientWorkingDir +"/text.txt"); //"app_"+patientWorkingDir+"/"+condition);
         Thread thread = new Thread(runnable);
         thread.start();
     }
