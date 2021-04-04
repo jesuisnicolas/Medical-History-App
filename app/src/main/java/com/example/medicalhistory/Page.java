@@ -10,7 +10,6 @@ public class Page {
     private String TAG = "Page";
 
     public Page(){
-
     }
 
 
