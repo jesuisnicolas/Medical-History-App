@@ -30,10 +30,10 @@ public class PageActivity extends AppCompatActivity {
         page = fileImport.getPage();
 
         TextView title = findViewById(R.id.fileName);
-        title.setText(page.getTitle());
+        title.setText(page.getCondition());
 
         EditText body = findViewById(R.id.bodyText);
-        body.setText(page.getBodyText());
+        body.setText(page.getExtraInfo());
     }
 
 

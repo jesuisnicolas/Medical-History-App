@@ -88,10 +88,19 @@ public class NewEntry extends AppCompatActivity {
         String condition = cond.getText().toString();
         String doctor = doc.getText().toString();
         String date = dat.getText().toString();
-        String filePath; //I haven't done the part were we get the path. line 33
-
+        String information = inf.getText().toString();
+        String newEntryFilePath; //I haven't done the part were we get the path.
         //And now here the file should be created in the patient's folder
 
+        Page file = new Page();
+        file.setCondition(condition);
+        file.setDoctor(doctor);
+        file.setDate(date);
+        file.setExtraInfo(information);
+
+        FileExport newFile = new FileExport(file, "app_"+patientWorkingDir);
+        Thread thread1 = new Thread(newFile, "Thread 1");
+        thread1.start();
     }
 }
 
