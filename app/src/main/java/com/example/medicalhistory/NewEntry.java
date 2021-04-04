@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.File;
+
 public class NewEntry extends AppCompatActivity {
     private static final String TAG = "New Entry Activity";
     /*Here's where the user add a new Entry to the Medical History.
@@ -88,10 +90,24 @@ public class NewEntry extends AppCompatActivity {
         String condition = cond.getText().toString();
         String doctor = doc.getText().toString();
         String date = dat.getText().toString();
-        String filePath; //I haven't done the part were we get the path. line 33
-
+        String information = inf.getText().toString();
+        String newEntryFilePath; //I haven't done the part were we get the path.
         //And now here the file should be created in the patient's folder
 
+        Page file = new Page();
+        file.setBodyText("hello");
+        file.setFileRefrance("text.txt");
+//        file.setCondition(condition);
+//        file.setDoctor(doctor);
+//        file.setDate(date);
+//        file.setExtraInfo(information);
+
+//        FileExport fileExport = new FileExport(file, getFilesDir() + "/text.txt");
+//        fileExport.exportPage();
+
+        Runnable runnable = new FileExport(file, getFilesDir() + "/text.txt"); //"app_"+patientWorkingDir+"/"+condition);
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 }
 
