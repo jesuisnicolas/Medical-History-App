@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     private List<Patient> patients = new ArrayList<Patient>();
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
