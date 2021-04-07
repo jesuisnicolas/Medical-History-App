@@ -23,11 +23,11 @@ public class PageActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        pathName = ""; //TODO: get file extention here
+        pathName = message; //TODO: get file extention here
 
-        FileImport fileImport = new FileImport(pathName);
-        fileImport.importFile();
-        page = fileImport.getPage();
+//        FileImport fileImport = new FileImport(pathName);
+//        fileImport.importFile();
+//        page = fileImport.getPage();
 
         TextView title = findViewById(R.id.fileName);
         //title.setText(page.getCondition());

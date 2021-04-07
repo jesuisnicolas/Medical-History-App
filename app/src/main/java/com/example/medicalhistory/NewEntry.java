@@ -122,7 +122,9 @@ public class NewEntry extends AppCompatActivity {
         Context context = getApplicationContext();
         Toast toast = Toast.makeText(context, "Entry Created", Toast.LENGTH_LONG);
         toast.show();
+        finish();
     }
+
 
 }
 

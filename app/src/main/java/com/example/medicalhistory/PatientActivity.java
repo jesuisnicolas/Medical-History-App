@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import java.util.List;
 // This activity will be called when the user taps in the name of the patient
 // in the Main Activity.
 public class PatientActivity extends AppCompatActivity {
+    private static final String TAG = "Patient Activity";
 /*This is the page where the page can see their last entries, change its info, etc.
 We should store all the info in an array.
 The latest entries are obtained from the app storage. Also, the doctors names and the
@@ -49,17 +51,31 @@ condition name should be stored.
         File f = getDir(workingDirectory, MODE_PRIVATE);
         String[] fileList = f.list();
         //TODO: decide on removing file extentions (.txt / .json)
-        fileNames = Arrays.asList(fileList);
-        //this is an attempt
-//        Field[] fields=R.class.getFields();
-//        for(int count=0; count < fields.length; count++){
-//            Log.i("Raw Asset: ", fields[count].getName());
-//        }
 
+        fileNames = Arrays.asList(fileList);
+        // This was an attempt to remove the extensions that didn't work. Moving on...
+//        for (String path :fileNames){
+//            final int lastPeriodPos = path.lastIndexOf('.');
+//            // Remove the last period and everything after it
+//            File renamed = new File(f.getParent(), path.substring(0, lastPeriodPos));
+//            path = renamed.getPath();
+//        }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this , android.R.layout.simple_list_item_1, fileNames);
 
         ListView listView = (ListView) findViewById(R.id.fileList);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View PatientActivity, int position,
+                                    long id) {
+                Intent intent = new Intent(PatientActivity.this, PageActivity.class);
+                String message = parent.getAdapter().getItem(position).toString();
+                intent.putExtra(EXTRA_MESSAGE, message);
+                Log.d(TAG, "onItemClick: "+message);
+                startActivity(intent);
+            }
+        });
 
     }
 

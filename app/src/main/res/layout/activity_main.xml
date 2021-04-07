@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:screenOrientation="portrait"
     tools:context=".MainActivity"
     android:background="@drawable/colorful_app_background"
     android:tileMode="repeat"
-    android:gravity="clip_vertical">
+    android:gravity="clip_vertical"
+    android:configChanges="orientation|keyboardHidden">
 
 
     <androidx.constraintlayout.widget.Guideline
