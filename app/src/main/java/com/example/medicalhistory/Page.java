@@ -8,8 +8,8 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class Page {
-//    private String bodyText;
-//    private String TAG = "Page";
+    private String bodyText;
+    private String TAG = "Page";
 //    private String fileRefrance;
     private String condition;
     private String doctor;

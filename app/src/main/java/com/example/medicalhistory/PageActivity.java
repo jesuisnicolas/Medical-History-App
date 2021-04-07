@@ -7,11 +7,15 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.File;
+
 public class PageActivity extends AppCompatActivity {
 
+    private static final String TAG = "PageActivity";
     protected String pathName;
     protected Page page;
 
@@ -22,18 +26,22 @@ public class PageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_page);
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        pathName = message; //TODO: get file extention here
+        String message = intent.getStringExtra(PatientActivity.EXTRA_MESSAGE);
+        Log.d(TAG,"Opening file: " + pathName);
+        //pathName =  getDir(message, MODE_PRIVATE) ; //TODO: get file extention here
+        File file = getDir(message, MODE_PRIVATE);
+        pathName = file.getPath();
 
-//        FileImport fileImport = new FileImport(pathName);
-//        fileImport.importFile();
-//        page = fileImport.getPage();
+
+        FileImport fileImport = new FileImport(pathName);
+        fileImport.importFile();
+        page = fileImport.getPage();
 
         TextView title = findViewById(R.id.fileName);
-        //title.setText(page.getCondition());
+        title.setText(page.getCondition());
 
         EditText body = findViewById(R.id.bodyText);
-//        body.setText(page.getBodyText());
+        body.setText(page.getExtraInfo());
     }
 
 
