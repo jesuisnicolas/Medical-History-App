@@ -70,7 +70,7 @@ condition name should be stored.
             public void onItemClick(AdapterView<?> parent, View PatientActivity, int position,
                                     long id) {
                 Intent intent = new Intent(PatientActivity.this, PageActivity.class);
-                String message = workingDirectory + '/' + parent.getAdapter().getItem(position).toString();
+                String message = parent.getAdapter().getItem(position).toString();
                 intent.putExtra(EXTRA_MESSAGE, message);
                 Log.d(TAG, "onItemClick: "+ message);
                 startActivity(intent);
